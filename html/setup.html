@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<script type="text/javascript" src="../lib/jquery.js"> </script> 
+		<script type="text/javascript" src="../lib/bootstrap.min.js"> </script> 
+		<script type="text/javascript" src="../js/setup.js"> </script> 
+	    <link href="../css/setup.css" rel="stylesheet" type="text/css">
+	    <script src="../lib/jquery-ui.min.js" type="text/javascript"></script>
+		<link href="../lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+	    <link href="../css/jquery.tagit.css" rel="stylesheet" type="text/css">
+	    <link href="../css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+    	<script src="../lib/tag-it.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="progress progress-striped">
+		  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuemin="0">
+		  </div>
+		</div>
+		<div id="step1" class="step">
+			<h3><span class="currentStep"></span>Choose Study Mode</h3>
+			How strict should we be?
+			<div id="studystates" class="inputArea">
+			  <button class="btn btn-success btn-block btn-lg" value="1">Flexible <span class="glyphicon glyphicon-chevron-right"></span></button>
+			  <button class="btn btn-success btn-block btn-lg" value="2">Classic <span class="glyphicon glyphicon-chevron-right"></span></button>
+			  <button class="btn btn-success btn-block btn-lg" value="3">Strict  <span class="glyphicon glyphicon-chevron-right"></span></button>
+			</div>
+		</div>
+		<div id="step2" class="step">
+			<h3><span class="currentStep"></span>Domains to Block</h3>
+			Type or choose evil domains.
+			<div class="inputArea">
+				<input type="text" id="domainSelection" autofocus="autofocus"/>
+			</div>
+			<div id="domainSuggestions">
+				<div><button class="btn btn-xs" value="youtube.com">youtube.com</button>
+				<button class="btn btn-xs" value="facebook.com">facebook.com</button>
+				<button class="btn btn-xs" value="twitter.com">twitter.com</button></div>
+				<div><button class="btn btn-xs" value="9gag.com">9gag.com</button>
+				<button class="btn btn-xs" value="collegehumor.com">collegehumor.com</button>
+				<button class="btn btn-xs" value="buzzfeed.com">buzzfeed.com</button></div>
+			</div>
+			<div>
+				<button id="step2Next" class="btn btn-success btn-lg nextButton" disabled="disabled">Next<span class="glyphicon glyphicon-chevron-right"></span></button>
+			</div>
+		</div>
+		<div id="step3" class="step">
+
+		</div>
+		
+	</body>
+
+</html>
+

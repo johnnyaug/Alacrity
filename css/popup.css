@@ -1,0 +1,95 @@
+body {
+  min-width:557px;
+  font-family:'Open Sans Condensed', sans-serif;
+  font-size:22px;
+}
+img {
+  margin:5px;
+  vertical-align:middle;
+  width:125px;
+  height:125px;
+}
+
+.moreInfo {
+	border: 1px solid #777;
+	border-radius: 5px;
+	color: #777;
+	font-size: 70%;
+	padding: 0px 2px;
+	cursor: default;
+}
+.moreInfo:hover {
+	color: #000;
+	border: 1px solid #000;
+}
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../resources/Open Sans Condensed.woff') format('woff');
+}
+
+.icon-home {
+  font-style: normal;
+  font-size: 2em;
+  speak: none;
+}
+
+.nav {
+  list-style: none;
+  text-align: center;
+}
+
+.nav li {
+  position: relative;
+  display: inline-block;
+  margin-right: -4px;
+}
+
+
+.nav a:link, .nav a:visited {
+  display: block;
+  text-decoration: none;
+  background-color: #428bca;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#428bca), to(#81B5DF));
+  background-image: -webkit-linear-gradient(top, #428bca, #81B5DF); 
+  background-image: -moz-linear-gradient(top, #428bca, #81B5DF); 
+  background-image: -ms-linear-gradient(top, #428bca, #81B5DF); 
+  background-image: -o-linear-gradient(top, #428bca, #81B5DF); 
+  color: #fff;
+  margin: 36px;
+  width: 144px;
+  height: 144px;
+  position: relative;
+  text-align: center;
+  line-height: 144px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 8px #428bca, inset 0px 2px 3px #81B5DF;
+  border: solid 1px transparent;
+}
+
+.nav a:before { /* behind button*/
+  content: "";
+  display: block;
+  background: #428bca;
+  border-top: 2px solid #428bca;
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  bottom: -18px;
+  right: -18px;
+  z-index: -1;
+  border-radius: 50%;
+  box-shadow: inset 0px 4px 48px #ddd;
+}
+
+.nav a:active { 
+  /*Click animation*/
+  box-shadow: 0px 3px 4px #aaa inset, 0px 2px 3px #fff !important;
+}
+
+.nav a:hover {
+  text-decoration: none;
+  color: #555;
+  background: #428bca !important;
+}​

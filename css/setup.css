@@ -1,0 +1,31 @@
+body {
+	min-width: 500px;
+	text-align: center;
+
+}
+.step {
+	padding: 25px;
+}
+.step:not(#step1) {
+	display: none;
+}
+.inputArea {
+	margin-top: 20px;
+}
+#studystates {
+	margin-left:40px;
+	margin-right:40px;
+}
+#domainSuggestions button {
+	margin-bottom: 5px;
+}
+
+.nextButton {
+	margin-top: 20px;
+}
+.progress {
+	margin: 40px 40px 0;
+}
+.currentStep {
+	color: #999;
+}
