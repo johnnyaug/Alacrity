@@ -12,7 +12,7 @@ function WarningShower() {
 				$(".ui-dialog-titlebar-close").toggle(canClose);
 			},
 			closeOnEscape: canClose,
-			buttons: canClose && {text:'Got It'}
+			buttons: canClose && [{text:'Got It'}]
 		});
 		$('#alacrityErrorModal').dialog("open");
 	}
