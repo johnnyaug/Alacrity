@@ -6,14 +6,21 @@ chrome.storage.local.get('isSetup', function(result) {
 		location.href="setup.html";
 	}
 });
+function updateStorage(cb) {
+	chrome.storage.local.get(['studystate', 'domainList', 'defaultStudyState', 'breakLengthMin', 'breakFreqMin'], function(data) {
+		storageData = data;
+		if (cb) {
+			cb();
+		}
+	});
+}
 $(document).ready(function() {
 	$('#clearStorage').click(function() {
 		chrome.storage.local.clear();
 	})
 
 	$('#domainSelection').tagit();
-	chrome.storage.local.get(['studystate', 'domainList', 'defaultStudyState', 'breakLengthMin', 'breakFreqMin'], function(data) {
-		storageData = data;
+	updateStorage(function() {
 		if (!storageData.studystate || storageData.studystate == false) {
 			$("#stop").hide();
 		} else {
@@ -46,6 +53,7 @@ $(document).ready(function() {
 				function() {
 					chrome.browserAction.setTitle({title: "Alacrity"});
 					chrome.browserAction.setBadgeText({text: ""});
+					updateStorage();
 				});
 		}
 		else {
@@ -65,6 +73,7 @@ $(document).ready(function() {
 					chrome.browserAction.setTitle({title: "Alacrity - Work Mode"});
 					chrome.browserAction.setBadgeText({text: " "});
 					chrome.browserAction.setBadgeBackgroundColor({color: "#990000"});
+					updateStorage();
 				});
 		}
 	});

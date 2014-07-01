@@ -65,7 +65,7 @@ img {
   line-height: 144px;
   border-radius: 50%;
   box-shadow: 0px 3px 8px #428bca, inset 0px 2px 3px #81B5DF;
-  border: solid 1px transparent;
+  border: solid 1px #428bca;
 }
 
 .nav a:before { /* behind button*/

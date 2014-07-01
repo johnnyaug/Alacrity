@@ -15,9 +15,8 @@
   },
   "content_scripts": [{
   	"matches": ["http://*/*", "https://*/*"],
-  	"css": ["lib/colorbox.css"],
-    "js": ["lib/jquery.js", "lib/jquery.colorbox.js", "js/fancy-box-shower.js"]
+  	"css": ["lib/jquery-ui.min.css", "lib/jquery-ui.theme.css","css/content.css"],
+    "js": ["lib/jquery.js", "lib/jquery-ui.js", "js/warning-shower.js", "js/content.js"]
   }],
   "manifest_version": 2,
-  "web_accessible_resources": ["html/error.html", "html/warning2.html", "html/break-started.html", "css/warning.css", "lib/images/controls.png"]
-}
+  "web_accessible_resources": ["html/error.html", "html/warning2.html", "html/break-started.html", "resources/Open%20Sans%20Condensed.woff","lib/images/*"]}

@@ -1,9 +1,9 @@
 var storageData;
-var isbreak = false;
+var isBreak = false;
 // set in main.js
 var breaktime;
 var closeTabsAfter = 60000; // ms
-var startBreakTimer, closeTimer, breakOverTimer;
+var closeTimer, breakOverTimer;
 var closeTimerSetTime;
 var storageKeys = ['studystate', 'domainList', 'breakLengthMin', 'breakFreqMin'];
 chrome.storage.local.get(storageKeys, function(data) {
@@ -42,7 +42,7 @@ function closeMe() {
 }
 
 function startBreak(tab) {
-	isbreak = true;
+	isBreak = true;
 	
 	if (tab) {
 		chrome.tabs.sendMessage(tab.id, {
@@ -57,7 +57,7 @@ function startBreak(tab) {
 }
 
 function breakOver() {
-	isbreak = false;
+	isBreak = false;
 	breaktime = parseInt(new Date().getTime()) + storageData.breakFreqMin * 60000;
 	chrome.browserAction.setBadgeBackgroundColor({color: "#990000"});
 }
@@ -103,8 +103,11 @@ function setTabCloseTimer(ms, override) {
 }
 
 function checkTab(tab) {
+	if (storageData.studystate == false || isBreak) { 
+		return;
+	}
 	var currentTime = new Date();
-	if (!isbreak && breaktime >= currentTime.getTime() && isForbidden(tab.url)) {
+	if (!isBreak && breaktime >= currentTime.getTime() && isForbidden(tab.url)) {
 		chrome.tabs.sendMessage(tab.id, {
 			showWarning: true,
 			studystate: storageData.studystate
@@ -121,23 +124,18 @@ function checkTab(tab) {
 }
 
 function checkTabById(tabId) {
-	if (storageData.studystate == "false" || isbreak)
-		return;
 	chrome.tabs.get(tabId, checkTab);
 }
 
 function checkTabByObject(tab) {
-	if (storageData.studystate == "false" || isbreak)
-		return;
 	chrome.tabs.get(tab.tabId, checkTab);
 }
 
 function killTimers() {
-	clearTimeout(startBreakTimer);
 	clearTimeout(closeTimer);
 	clearTimeout(breakOverTimer);
 	closeTimer = null;
-	isbreak = false;
+	isBreak = false;
 }
 
 chrome.tabs.onUpdated.addListener(checkTabById);

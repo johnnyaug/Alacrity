@@ -1,34 +1,21 @@
+/*.ui-dialog {
+	z-index: 2147483647 !important;
+}
+.ui-widget-overlay {
+	z-index: 2147483646 !important;
+}*/
+
 body {
-	background: #F6F8D3;
-}
-.closeButton {
-	margin-top:20px;
-}
-#warningBody
-{
+	text-align: center;
 	font-family:'Open Sans Condensed', sans-serif;
-	font-size:22px;
-	height: auto;
-	width: auto;
-	text-align:center;
+	font-size: 55px;
 }
-#warningBody button {
-	box-shadow:inset 0px 1px 0px 0px #7a8eb9;
-	background:linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
-	background-color:#637aad;
-	border-radius:3px;
-	border:0;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:'Open Sans Condensed';
-	padding:6px 24px;
-	max-width:300px;
-	min-width: 20%;
-	font-size: 22px;
+h1 {
+	margin-top:10px;
 }
 @font-face {
   font-family: 'Open Sans Condensed';
   font-style: normal;
   font-weight: 300;
-  src: url('../resources/Open Sans Condensed.woff') format('woff');
+  src: url('chrome-extension://__MSG_@@extension_id__/resources/Open Sans Condensed.woff') format('woff');
 }
