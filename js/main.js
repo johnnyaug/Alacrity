@@ -8,7 +8,6 @@ chrome.storage.local.get('isSetup', function(result) {
 $(document).ready(function() {
 	$("#start").click(function() {
 		var workMode = chrome.extension.getBackgroundPage().workMode;
-		console.log(workMode);
 		if(workMode) {
 			// STOP:
 			chrome.extension.getBackgroundPage().workMode = false;
@@ -18,12 +17,12 @@ $(document).ready(function() {
 		}
 		else {
 			// START:
-			$("#error").html("");
-			chrome.storage.local.get('breakFreqMin', function(storageData) {
+			console.log($("input:radio[name=workMode]:checked").val());
+			chrome.storage.local.get(['breakFreqMin','defaultStudyState'], function(storageData) {
 				chrome.extension.getBackgroundPage().breaktime = new Date().getTime() + storageData.breakFreqMin * 60000;
-				chrome.extension.getBackgroundPage().workMode = $("input:radio[name=workMode]:checked").val(),
-				chrome.browserAction.setTitle({title: "Alacrity - Work Mode"});
+				chrome.extension.getBackgroundPage().workMode = storageData.defaultStudyState;
 				chrome.browserAction.setBadgeText({text: " "});
+				chrome.browserAction.setTitle({title: "Alacrity - Work Mode"});
 				chrome.browserAction.setBadgeBackgroundColor({color: "#990000"});
 			});
 		}
