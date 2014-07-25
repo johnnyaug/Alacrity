@@ -1,13 +1,13 @@
 var shown = false,
 	warningShower = new WarningShower();
-$(function() {
-	$('body').append('<div id="alacrityErrorModal" src=""><iframe id="alacrityIFrame"></iframe></div>');
-});
 
 function showWarning(request) {
-	if (request.studystate === '2') {
+	console.log(request.workMode);
+	if (request.workMode === '0') {
+		warningShower.show(chrome.extension.getURL("html/warning.html"), true);
+	} else if (request.workMode === '1') {
 		warningShower.show(chrome.extension.getURL("html/warning2.html"), true);
-	} else if (request.studystate === '3') {
+	} else if (request.workMode === '2') {
 		warningShower.show(chrome.extension.getURL("html/error.html"), false);
 	}
 }

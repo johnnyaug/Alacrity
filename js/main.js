@@ -1,80 +1,31 @@
-
 var storageData;
-
 chrome.storage.local.get('isSetup', function(result) {
 	if (!result.isSetup) {
 		location.href="setup.html";
 	}
 });
-function updateStorage(cb) {
-	chrome.storage.local.get(['studystate', 'domainList', 'defaultStudyState', 'breakLengthMin', 'breakFreqMin'], function(data) {
-		storageData = data;
-		if (cb) {
-			cb();
-		}
-	});
-}
+
 $(document).ready(function() {
-	$('#clearStorage').click(function() {
-		chrome.storage.local.clear();
-	})
-
-	$('#domainSelection').tagit();
-	updateStorage(function() {
-		if (!storageData.studystate || storageData.studystate == false) {
-			$("#stop").hide();
-		} else {
-			$("#prefs").css("display", "none");
-		}
-		$("#level" + storageData.defaultStudyState).attr("checked", "checked");
-
-		if (storageData.breakFreqMin != null) {
-			$("#breakfreq").val(storageData.breakFreqMin);
-		}
-		if (storageData.breakLengthMin != null) {
-			$("#breaklength").val(storageData.breakLengthMin);
-		}
-		if (storageData.domainList) {
-			storageData.domainList.forEach(function(domain) {
-				$('#domainSelection').tagit('createTag', domain);
-			})
-		}
-	});
-
-
 	$("#start").click(function() {
-		if(storageData.studystate) {
+		var workMode = chrome.extension.getBackgroundPage().workMode;
+		console.log(workMode);
+		if(workMode) {
 			// STOP:
+			chrome.extension.getBackgroundPage().workMode = false;
 			chrome.extension.getBackgroundPage().killTimers();
-			$("#prefs").toggle("slow");
-			chrome.storage.local.set({
-					studystate: false
-				},
-				function() {
-					chrome.browserAction.setTitle({title: "Alacrity"});
-					chrome.browserAction.setBadgeText({text: ""});
-					updateStorage();
-				});
+			chrome.browserAction.setTitle({title: "Alacrity"});
+			chrome.browserAction.setBadgeText({text: ""});
 		}
 		else {
 			// START:
 			$("#error").html("");
-			$("#prefs").toggle("slow");
-
-			chrome.extension.getBackgroundPage().breaktime = new Date().getTime() + $('#breakfreq').val() * 60000;
-			console.log(chrome.extension.getBackgroundPage().breaktime);
-			chrome.storage.local.set({
-					studystate: $("input:radio[name=level]:checked").val(),
-					domainList: $("#domainSelection").val().split(','),
-					breakLengthMin: $("#breaklength").val(),
-					breakFreqMin: $('#breakfreq').val()
-				},
-				function() {
-					chrome.browserAction.setTitle({title: "Alacrity - Work Mode"});
-					chrome.browserAction.setBadgeText({text: " "});
-					chrome.browserAction.setBadgeBackgroundColor({color: "#990000"});
-					updateStorage();
-				});
+			chrome.storage.local.get('breakFreqMin', function(storageData) {
+				chrome.extension.getBackgroundPage().breaktime = new Date().getTime() + storageData.breakFreqMin * 60000;
+				chrome.extension.getBackgroundPage().workMode = $("input:radio[name=workMode]:checked").val(),
+				chrome.browserAction.setTitle({title: "Alacrity - Work Mode"});
+				chrome.browserAction.setBadgeText({text: " "});
+				chrome.browserAction.setBadgeBackgroundColor({color: "#990000"});
+			});
 		}
 	});
 });

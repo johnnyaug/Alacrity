@@ -15,8 +15,9 @@
   },
   "content_scripts": [{
   	"matches": ["http://*/*", "https://*/*"],
-  	"css": ["lib/jquery-ui.min.css", "lib/jquery-ui.theme.css","css/content.css"],
-    "js": ["lib/jquery.js", "lib/jquery-ui.js", "js/warning-shower.js", "js/content.js"]
+  	"css": ["lib/jquery-ui.min.css", "lib/jquery-ui.theme.css","css/content.css", "lib/jquery.nyroModal/styles/nyroModal.css"],
+    "js": ["lib/jquery.js", "lib/jquery.nyroModal/js/jquery.nyroModal.custom.min.js", "js/warning-shower.js", "js/content.js"]
   }],
   "manifest_version": 2,
-  "web_accessible_resources": ["html/error.html", "html/warning2.html", "html/break-started.html", "resources/Open%20Sans%20Condensed.woff","lib/images/*"]}
+  "web_accessible_resources": ["html/error.html", "html/warning.html", "html/warning2.html", "html/break-started.html",
+                              "resources/Open%20Sans%20Condensed.woff","lib/images/*", "lib/jquery.nyroModal/img/*"]}

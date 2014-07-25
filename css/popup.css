@@ -10,18 +10,6 @@ img {
   height:125px;
 }
 
-.moreInfo {
-	border: 1px solid #777;
-	border-radius: 5px;
-	color: #777;
-	font-size: 70%;
-	padding: 0px 2px;
-	cursor: default;
-}
-.moreInfo:hover {
-	color: #000;
-	border: 1px solid #000;
-}
 @font-face {
   font-family: 'Open Sans Condensed';
   font-style: normal;
@@ -93,3 +81,32 @@ img {
   color: #555;
   background: #428bca !important;
 }​
+
+.form-field.edit-mode input {
+  display: inline;
+}
+.form-field.edit-mode p {
+  display: none;
+}
+.form-field.view-mode input {
+  display: none;
+}
+.form-field.view-mode p {
+  display: inline;
+}
+.edit-button {
+  font-size:12px;
+  padding:2px;
+}
+
+.form-field.edit-mode .edit-button {
+  display:none;
+}
+.evil-domains {
+  font-size:12px;
+  font-weight: normal;
+  padding: 0px 10px;
+}
+.prefs-panel {
+  margin: 0px 20px;
+}

@@ -5,7 +5,7 @@ var breaktime;
 var closeTabsAfter = 60000; // ms
 var closeTimer, breakOverTimer;
 var closeTimerSetTime;
-var storageKeys = ['studystate', 'domainList', 'breakLengthMin', 'breakFreqMin'];
+var storageKeys = ['domainList', 'breakLengthMin', 'breakFreqMin'];
 chrome.storage.local.get(storageKeys, function(data) {
 	storageData = data;
 });
@@ -62,15 +62,6 @@ function breakOver() {
 	chrome.browserAction.setBadgeBackgroundColor({color: "#990000"});
 }
 
-function showWarning(isFlexible) {
-	//TODO use isFlexible
-	chrome.notifications.create('warningNortif', {
-		type: 'basic',
-		//iconUrl : '../resources/logo_st.png',
-		title: 'Ahm. It\'s not break time yet.',
-		message: 'Click to close irrelevant tabs.<br>Your break is in ## minutes.'
-	}, function() {});
-}
 /**
  *	Set an interval after which all evil tabs are closed, assuming such timer doesn't exist.
  *	if ms is null, clears and nulls existing timer instead.
@@ -103,17 +94,18 @@ function setTabCloseTimer(ms, override) {
 }
 
 function checkTab(tab) {
-	if (storageData.studystate == false || isBreak) { 
+	if (workMode === false || isBreak) { 
 		return;
 	}
 	var currentTime = new Date();
+	console.log(breaktime);
 	if (!isBreak && breaktime >= currentTime.getTime() && isForbidden(tab.url)) {
 		chrome.tabs.sendMessage(tab.id, {
 			showWarning: true,
-			studystate: storageData.studystate
+			workMode: workMode
 		}, function() {});
 
-		if (storageData.studystate == "2" || storageData.studystate == "3") {
+		if (workMode == "1" || workMode == "2") {
 			setTabCloseTimer(closeTabsAfter);
 		}
 	} else {

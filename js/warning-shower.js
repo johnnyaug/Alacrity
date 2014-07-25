@@ -1,6 +1,6 @@
 function WarningShower() {
 	this.show = function(url, canClose) {
-		$('#alacrityIFrame').attr('src', url);
+/*		$('#alacrityIFrame').attr('src', url);
 		$("#alacrityErrorModal").dialog({
 			resizable: canClose,
 			draggable: canClose,
@@ -14,6 +14,19 @@ function WarningShower() {
 			closeOnEscape: canClose,
 			buttons: canClose && [{text:'Got It'}]
 		});
-		$('#alacrityErrorModal').dialog("open");
+		$('#alacrityErrorModal').dialog("open");*/
+		$.nmManual(url, {
+			modal: !canClose,
+			closeOnEscape: canClose,
+			closeOnClick: canClose,
+			useKeyHandler: canClose,
+			showCloseButton: canClose ,
+			callbacks: {
+				initFilters: function(nm) {
+					nm.filters.push('link');
+					nm.filters.push('iframe');
+				}
+			}
+		});
 	}
 }
